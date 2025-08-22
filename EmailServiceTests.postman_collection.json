@@ -1,0 +1,158 @@
+{
+  "info": {
+    "name": "Email Micro-Service Functional Tests",
+    "_postman_id": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+    "description": "Functional test cases for the /send-email API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Valid Email Request",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"to\": \"test@domain.com\",\n  \"subject\": \"Welcome!\",\n  \"body\": \"Thanks for signing up.\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/send-email",
+          "host": ["{{baseUrl}}"],
+          "path": ["send-email"]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Valid request should return status code 202\", function () {",
+              "    pm.response.to.have.status(202);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Missing 'to' Field",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"subject\": \"Welcome!\",\n  \"body\": \"Thanks for signing up.\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/send-email",
+          "host": ["{{baseUrl}}"],
+          "path": ["send-email"]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Missing 'to' should return status code 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invalid Email Format",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"to\": \"ApexNetwork@com\",\n  \"subject\": \"Welcome!\",\n  \"body\": \"Thanks for signing up.\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/send-email",
+          "host": ["{{baseUrl}}"],
+          "path": ["send-email"]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Invalid email should return 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Simulate Queue Full",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"to\": \"user@example.com\",\n  \"subject\": \"Welcome!\",\n  \"body\": \"Thanks for signing up.\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/send-email?simulateQueueFull=true",
+          "host": ["{{baseUrl}}"],
+          "path": ["send-email"],
+          "query": [
+            {
+              "key": "simulateQueueFull",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Simulated queue full should return 503\", function () {",
+              "    pm.response.to.have.status(503);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
