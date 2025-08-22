@@ -1,0 +1,29 @@
+{
+  "name": "automated-api-test-framework",
+  "version": "1.0.0",
+  "description": "This project provides automated functional API tests for the Email Service microservice using Postman and Newman.",
+  "main": "index.js",
+  "scripts": {
+    "test": "newman run EmailServiceTests.postman_collection.json --env-var",
+    "report": "newman run EmailServiceTests.postman_collection.json --env-var -r htmlextra --reporter-htmlextra-export newman/EmailServiceTests-report.html",
+    "report:timestamp": "newman run EmailServiceTests.postman_collection.json --env-var -r htmlextra --reporter-htmlextra-export newman/EmailServiceTests-$(date +%Y%m%d-%H%M%S).html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaacOvieJoseph/Automated-API-Test-Framework.git"
+  },
+  "keywords": [
+    "API",
+    "email API",
+    "Microservice",
+    "Automated Testing",
+    "Postman",
+    "Newman"
+  ],
+  "author": "Joseph Isaac Ovie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsaacOvieJoseph/Automated-API-Test-Framework/issues"
+  },
+  "homepage": "https://github.com/IsaacOvieJoseph/Automated-API-Test-Framework#readme"
+}
