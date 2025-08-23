@@ -51,12 +51,15 @@ Inside the project folder, run:
  Verify Installation:
  
    Check Newman
-     ```sh  npx newman -v```
+   ```sh  
+    npx newman -v
+   ```
     
    Check HTML reporter 
-    ```sh 
+   ```sh 
     npx newman run EmailServiceTests.postman_collection.json -r htmlextra
-    ```
+   ```
+
 
 # ▶️ Running Tests
 
