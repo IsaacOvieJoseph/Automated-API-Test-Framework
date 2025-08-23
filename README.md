@@ -3,7 +3,7 @@
 
 This project contains automated functional tests for the Email Service API using Newman
 , the Postman CLI runner.
-The tests validate normal cases, edge cases, and error handling, and can generate detailed HTML reports.
+The tests validate positive case, negative case, edge cases, and error handling, and can generate detailed HTML reports.
 ```
 📂 Project Structure
 email-service-tests/
@@ -15,6 +15,7 @@ email-service-tests/
 ```
 
 # ⚙️ Setup & Installation
+**Clone this repo to local folder**
 ## 1. Install Node.js & npm
 
  - Download and install Node.js LTS
