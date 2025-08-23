@@ -15,7 +15,7 @@ email-service-tests/
 ```
 
 # ⚙️ Setup & Installation
-**Clone this repo to local folder**
+
 ## 1. Install Node.js & npm
 
  - Download and install Node.js LTS
@@ -36,7 +36,7 @@ email-service-tests/
     npm -v
 ```
 ## 2. Install Dependencies
-
+*Clone this repo to your work folder - ensure you have package.json*
 Inside the project folder, run:
 ``` sh
     npm install
