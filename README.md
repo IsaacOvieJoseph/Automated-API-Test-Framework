@@ -1,5 +1,5 @@
-# 📖 Email Micro-Service API Tests
-## 📌 Overview
+# Email Micro-Service API Tests
+## 📖 Overview
 
 This project contains automated functional tests for the Email Service API using Newman
 , the Postman CLI runner.
@@ -78,18 +78,62 @@ Instead of typing long Newman commands, you can use npm scripts defined in packa
     
     Generates reports like newman/report-20250822154030.html.
 
-# 🛠 Adjusting for Your API
+# ⚙️ Adjusting Tests to Your API
 
-  By default, the collection points to a placeholder API.
- 
-   - Open EmailServiceTests.postman_collection.json.
-   - Find the request URL, e.g.:
+You can easily configure the collection to match your own API endpoint and payload.
 
-        "url": "http://localhost:3000/api/send-email"
+## Option 1: Change the Base URL in Scripts
 
-   - Replace it with your own API’s base URL and endpoint.
-   - Save the file.
-   - Now rerun the tests with npm run report.
+Edit **package.json** and replace the **baseUrl** value in the scripts.
+Example:
+
+```sh
+"scripts": {
+  "test": "newman run EmailServiceTests.postman_collection.json --env-var baseUrl=https://api.yourdomain.com"
+}
+```
+
+Now all requests will hit https://api.yourdomain.com.
+
+## Option 2: Edit the Postman Collection
+
+Open Postman.
+
+Import **EmailServiceTests.postman_collection.json** .
+
+Update the request endpoint to your API (e.g., /api/v1/sendEmail).
+
+Adjust the request body fields if your API requires different keys.
+Example:
+
+``` sh
+{
+  "recipient": "user@example.com", 
+  "subject": "Welcome!",
+  "content": "Thanks for signing up."
+}
+```
+
+Export the updated collection and replace the JSON file in this repo.
+
+## Option 3: Use Environment Variables (Best Practice)
+
+Instead of editing scripts, you can pass your API dynamically at runtime:
+
+```sh 
+     newman run EmailServiceTests.postman_collection.json --env-var baseUrl=https://staging.yourdomain.com
+```
+
+This avoids hardcoding and makes switching between local / staging / production easy.
+
+**NB**
+
+ - If your API uses auth tokens (e.g., Bearer token), add them under Authorization in Postman before exporting.
+
+ - If your API has different error codes, update the test assertions in Postman accordingly.
+
+ - If your payload structure differs (different field names), you must update the request body in the collection.
+
 
 # 📊 Reports
 
@@ -104,3 +148,12 @@ Instead of typing long Newman commands, you can use npm scripts defined in packa
    - Test execution summary
    - Pass/Fail breakdown
    - Detailed request/response logs
+
+
+# 📌 Notes & Assumptions
+
+- The ```simulateQueueFull=true``` query parameter is assumed to exist to test **503** Service Unavailable.
+
+- These tests validate API contract & error handling, not actual email delivery.
+
+- For security/load tests, additional scripts/tools would be required.
