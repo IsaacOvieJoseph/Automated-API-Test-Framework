@@ -1,5 +1,5 @@
 # 📖 Email Micro-Service API Tests
-##📌 Overview
+## 📌 Overview
 
 This project contains automated functional tests for the Email Service API using Newman
 , the Postman CLI runner.
@@ -16,9 +16,9 @@ email-service-tests/
 # ⚙️ Setup & Installation
 ## 1. Install Node.js & npm
 
- -- Download and install Node.js LTS
+ --Download and install Node.js LTS
 
- -- Verify installation:
+ --Verify installation:
 ``` sh
     node -v
     pm -v
