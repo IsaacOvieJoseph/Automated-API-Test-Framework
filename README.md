@@ -37,8 +37,10 @@ email-service-tests/
 ```
 ## 2. Install Dependencies
 *Clone this repo to your work folder - ensure you have package.json*
+
 Inside the project folder, run:
 ``` sh
+    cd email-service-Tests
     npm install
 ```
  This installs:
