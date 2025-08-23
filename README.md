@@ -78,6 +78,12 @@ Instead of typing long Newman commands, you can use npm scripts defined in packa
     
     Generates reports like newman/report-20250822154030.html.
 
+       <img width="565" height="640" alt="image" src="https://github.com/user-attachments/assets/e208075f-a3f1-4e95-81d6-c9b8cb24dd8f"/>
+
+    *sample of HTML report*
+
+    
+
 # ⚙️ Adjusting Tests to Your API
 
 You can easily configure the collection to match your own API endpoint and payload.
