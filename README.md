@@ -40,7 +40,7 @@ email-service-tests/
 
 Inside the project folder, run:
 ``` sh
-    cd email-service-Tests   # To navigate into this repo folder
+    cd Automated-API-Test-Framework   # To navigate into this repo folder
     npm install
 ```
  This installs:
